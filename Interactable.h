@@ -7,9 +7,9 @@
 class Interactable 
 {
 public:
-    virtual void interact(Character* target) = 0;
-    virtual std::string getDialogue() const = 0;
-    virtual ~Interactable() = default;
+    //virtual void interact(Character* target) = 0;
+    //virtual std::string getDialogue() const = 0;
+    //virtual ~Interactable() = default;
 };
 
 #endif

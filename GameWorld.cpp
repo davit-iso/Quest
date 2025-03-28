@@ -1,48 +1,8 @@
-#include "GameWorld.h"
-#include <iostream>
-#include "Hero.h"
-#include "NPC.h"
-
-// void GameWorld::create_hero()
-// {
-//     Hero* hero = nullptr;
-//     int tmp = -1;
-//     std::cout<<"What kind of HERO do you want to create??"<<std::endl;
-//     std::cout<<"Choose\nWarior - 1\nMage - 2\nRogue - 3"<<std::endl;
-//     std::cin>>tmp;
-//     while(true)
-//     {
-//         if(tmp == 1)
-//         {
-//             std::string ts;
-//             std::cout<<"Choose name for warrior"<<std::endl;
-//             std::cin>>ts;
-//             hero = new Warrior(ts);
-//             std::cout<<"The Warrior - "<<ts<<" was created successfully!"<<std::endl;
-//             break;
-//         }
-//         else if(tmp == 2)
-//         {
-//             std::string ts;
-//             std::cout<<"Choose name for mage"<<std::endl;
-//             std::cin>>ts;
-//             hero = new Mage(ts);
-//             std::cout<<"The Mage - "<<ts<<" was created successfully!"<<std::endl;
-//             break;
-//         }
-//         else if(tmp == 3)
-//         {
-//             std::string ts;
-//             std::cout<<"Choose name for rogue"<<std::endl;
-//             std::cin>>ts;
-//             hero = new Rogue(ts);
-//             std::cout<<"The Rogue - "<<" was created successfully!"<<std::endl;
-//             break;
-//         }
-//         std::cout<<"Try again\nWarior - 1\nMage - 2\nRogue - 3"<<std::endl;
-//         std::cin>>tmp;
-//     }
-// }
+// #include "GameWorld.h"
+// #include <iostream>
+// #include "Hero.h"
+// #include "NPC.h"
+#include "header.hpp"
 
 void GameWorld::create_monster()
 {
@@ -128,3 +88,91 @@ void GameWorld::create_npc()
     npces.push_back(npc);
 }
 
+void Location::display_loc() const
+{
+    std::cout<<"Location - "<<name<<std::endl;
+}
+
+void GameWorld::display_characters() const
+{
+    std::cout<<"All Characters"<<std::endl;
+    for(int i = 0; i < monsters.size(); ++i)
+    {
+        monsters[i] -> displayStats();
+        std::cout<<std::endl;
+    }
+    for(int i = 0; i < npces.size(); ++i)
+    {
+        npces[i] -> display();
+        std::cout<<std::endl;
+    }
+}
+
+Location* GameWorld::get_loc()
+{
+    return location;
+}
+
+void GameWorld::display_alive_monsters() const
+{
+    std::cout<<"Alive Monsters"<<std::endl;
+    for(int i{}; i < monsters.size(); ++i)
+    {
+        if(monsters[i] -> get_health() > 0)
+        {
+            monsters[i] -> displayStats();
+        }
+    }
+}
+
+Monster* GameWorld::get_monster(std::string name)
+{
+    for(int i = 0; i < monsters.size(); ++i)
+    {
+        if(monsters[i] -> get_name() == name && monsters[i] -> get_health() > 0)
+        {
+            return monsters[i];
+        }
+        else if(monsters[i] -> get_name() == name && monsters[i] -> get_health() <= 0)
+        {
+            std::cout<<"The Monster is killed!"<<std::endl;
+            return nullptr;
+        }
+    }
+    std::cout<<"Monster not found!!!"<<std::endl;
+    return nullptr;
+}
+
+int GameWorld::alive_mons_count()
+{
+    int count = 0;
+    for(int i = 0; i < monsters.size(); ++i)
+    {
+        if(monsters[i] -> get_health() > 0)
+        {
+            ++count;
+        }
+    }
+    return count;
+}
+
+void GameWorld::create_loc()
+{
+    std::cout<<"Input location name"<<std::endl;
+    std::string str;
+    std::cin>>str;
+    location = new Location(str);
+}
+
+GameWorld::~GameWorld()
+{
+    delete location;
+    for(auto m : monsters)
+    {
+        delete m;
+    }
+    for(auto n : npces)
+    {
+        delete n;
+    }
+}

@@ -1,8 +1,9 @@
 #ifndef NPC_H
 #define NPC_H
 
-#include "Character.h"
-#include "Interactable.h"
+// #include "Character.h"
+// #include "Interactable.h"
+#include "header.hpp"
 
 class NPC : public Interactable 
 {
@@ -14,7 +15,7 @@ public:
     void set_dialogue(std::string dialogue);
     void display() const;
     void interact(Character* target);
-    std::string getDialogue() const;
+    std::string getDialogue();
 };
 
 class Villager : public NPC

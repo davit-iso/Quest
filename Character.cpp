@@ -24,3 +24,8 @@ int Character::get_health() const
 {
     return health;
 }
+
+std::string Character::get_name()
+{
+    return name;
+}
