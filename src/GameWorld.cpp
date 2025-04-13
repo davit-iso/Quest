@@ -3,6 +3,7 @@
 // #include "Hero.h"
 // #include "NPC.h"
 #include "header.hpp"
+#include <limits>
 
 void GameWorld::create_monster()
 {
@@ -18,6 +19,12 @@ void GameWorld::create_monster()
             std::string ts;
             std::cout<<"Choose name for Goblin"<<std::endl;
             std::cin>>ts;
+            if(std::cin.fail()){
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "Invalid input. Try again." << std::endl;
+                continue;
+            }
             mons = new Goblin(ts);
             std::cout<<"The Goblin - "<<ts<<" was created successfully!"<<std::endl;
             break;
@@ -27,6 +34,12 @@ void GameWorld::create_monster()
             std::string ts;
             std::cout<<"Choose name for Troll"<<std::endl;
             std::cin>>ts;
+            if(std::cin.fail()){
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "Invalid input. Try again." << std::endl;
+                continue;
+            }
             mons = new Troll(ts);
             std::cout<<"The Troll - "<<ts<<" was created successfully!"<<std::endl;
             break;
@@ -36,6 +49,12 @@ void GameWorld::create_monster()
             std::string ts;
             std::cout<<"Choose name for Dragon"<<std::endl;
             std::cin>>ts;
+            if(std::cin.fail()){
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "Invalid input. Try again." << std::endl;
+                continue;
+            }
             mons = new Dragon(ts);
             std::cout<<"The Dragon - "<<ts<<" was created successfully!"<<std::endl;
             break;
@@ -60,6 +79,12 @@ void GameWorld::create_npc()
             std::string ts;
             std::cout<<"Choose name for villager"<<std::endl;
             std::cin>>ts;
+            if(std::cin.fail()){
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "Invalid input. Try again." << std::endl;
+                continue;
+            }
             npc = new Villager(ts);
             std::cout<<"The Villager - "<<ts<<" was created successfully!"<<std::endl;
             break;
@@ -69,6 +94,12 @@ void GameWorld::create_npc()
             std::string ts;
             std::cout<<"Choose name for Merchant"<<std::endl;
             std::cin>>ts;
+            if(std::cin.fail()){
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "Invalid input. Try again." << std::endl;
+                continue;
+            }
             npc = new Merchant(ts);
             std::cout<<"The Merchant - "<<ts<<" was created successfully!"<<std::endl;
             break;
@@ -78,6 +109,12 @@ void GameWorld::create_npc()
             std::string ts;
             std::cout<<"Choose name for Healer"<<std::endl;
             std::cin>>ts;
+            if(std::cin.fail()){
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "Invalid input. Try again." << std::endl;
+                continue;
+            }
             npc = new Healer(ts);
             std::cout<<"The Healer - "<<ts<<" was created successfully!"<<std::endl;
             break;

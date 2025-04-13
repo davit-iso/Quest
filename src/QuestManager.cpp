@@ -2,6 +2,7 @@
 // #include <iostream>
 // #include "Hero.h"
 #include "header.hpp"
+#include <limits>
 
 void Quest::create_hero()
 {
@@ -17,6 +18,12 @@ void Quest::create_hero()
             std::string ts;
             std::cout<<"Choose name for warrior"<<std::endl;
             std::cin>>ts;
+            if(std::cin.fail()){
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "Invalid input. Try again." << std::endl;
+                continue;
+            }
             hero = new Warrior(ts);
             std::cout<<"The Warrior - "<<ts<<" was created successfully!"<<std::endl;
             break;
@@ -26,6 +33,12 @@ void Quest::create_hero()
             std::string ts;
             std::cout<<"Choose name for mage"<<std::endl;
             std::cin>>ts;
+            if(std::cin.fail()){
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "Invalid input. Try again." << std::endl;
+                continue;
+            }
             hero = new Mage(ts);
             std::cout<<"The Mage - "<<ts<<" was created successfully!"<<std::endl;
             break;
@@ -35,8 +48,14 @@ void Quest::create_hero()
             std::string ts;
             std::cout<<"Choose name for rogue"<<std::endl;
             std::cin>>ts;
+            if(std::cin.fail()){
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "Invalid input. Try again." << std::endl;
+                continue;
+            }
             hero = new Rogue(ts);
-            std::cout<<"The Rogue - "<<" was created successfully!"<<std::endl;
+            std::cout<<"The Rogue - "<<ts<<" was created successfully!"<<std::endl;
             break;
         }
         std::cout<<"Try again\nWarior - 1\nMage - 2\nRogue - 3"<<std::endl;
@@ -184,6 +203,12 @@ void QuestManager::start_game()
             std::string nm;
             std::cout<<"Input Monster name"<<std::endl;
             std::cin>>nm;
+            if(std::cin.fail()){
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "Invalid input. Try again." << std::endl;
+                continue;
+            }
             this -> activeQuests[0] -> fight(this -> activeQuests[0] ->get_hero(),(this -> activeQuests[0] -> get_mons_by_name(nm)));
             if(activeQuests[0] -> get_lost())
             {
@@ -204,6 +229,12 @@ void QuestManager::start_game()
             std::string nmn;
             std::cout<<"Input NPC name\n";
             std::cin>>nmn;
+            if(std::cin.fail()){
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "Invalid input. Try again." << std::endl;
+                continue;
+            }
             if(activeQuests[0] -> get_GameWorld() -> get_npc(nmn))
             {
                 std::cout<<activeQuests[0] -> get_hero() -> getDialogue();
